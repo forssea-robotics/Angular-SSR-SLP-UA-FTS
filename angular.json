@@ -15,8 +15,17 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "webpack-front.config.js",
+              "mergeRules": {
+                "module": {
+                  "rules": "prepend"
+                },
+                "replaceDuplicatePlugins": true
+              }
+            },
             "outputPath": "dist/angular-ssr-starter/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
