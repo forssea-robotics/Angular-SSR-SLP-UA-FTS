@@ -18,7 +18,7 @@
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
-              "path": "webpack-front.config.js",
+              "path": "src/frontend/webpack-front.config.js",
               "mergeRules": {
                 "module": {
                   "rules": "prepend"
@@ -27,19 +27,18 @@
               }
             },
             "outputPath": "dist/angular-ssr-starter/browser",
-            "index": "src/index.html",
-            "main": "src/main.ts",
+            "index": "src/frontend/index.html",
+            "main": "src/frontend/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "src/frontend/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/frontend/styles.scss"
             ],
             "scripts": []
           },
@@ -95,14 +94,13 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "src/frontend/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/frontend/styles.scss"
             ],
             "scripts": []
           }
@@ -111,13 +109,13 @@
           "builder": "@angular-builders/custom-webpack:server",
           "options": {
             "outputPath": "dist/angular-ssr-starter/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
+            "main": "src/backend/server.ts",
+            "tsConfig": "src/backend/tsconfig.server.json",
             "sourceMap": true,
             "optimization": false,
             "buildOptimizer": false,
             "customWebpackConfig": {
-              "path": "webpack-back.config.js",
+              "path": "src/backend/webpack-back.config.js",
               "mergeRules": {
                 "externals": "merge"
               },

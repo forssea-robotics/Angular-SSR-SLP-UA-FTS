@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
 
-import { AppModule } from './app.module';
-import { AppComponent } from './app.component';
+import { AppModule } from '../frontend/app/app.module';
+import { AppComponent } from '../frontend/app/app.component';
 
 @NgModule({
   imports: [

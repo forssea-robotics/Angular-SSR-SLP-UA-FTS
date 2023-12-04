@@ -1,6 +1,6 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "extends": "./tsconfig.app.json",
+  "extends": "../frontend/tsconfig.app.json",
   "compilerOptions": {
     "outDir": "./out-tsc/server",
     "types": [
@@ -8,7 +8,7 @@
     ]
   },
   "files": [
-    "src/main.server.ts",
+    "main.server.ts",
     "server.ts"
   ]
 }
