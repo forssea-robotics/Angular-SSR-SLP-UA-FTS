@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/platform-server": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "@forssea_robotics/node-slp": "^2.0.0",
     "@nguniversal/express-engine": "^16.2.0",
     "express": "^4.15.2",
     "express-ws": "^5.0.2",

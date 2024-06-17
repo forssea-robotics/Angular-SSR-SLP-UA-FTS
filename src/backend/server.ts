@@ -7,6 +7,7 @@ import * as expressWs from 'express-ws';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { AppServerModule } from './main.server';
+import { ApiSlpService } from './api/api-slp.service';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): expressWs.Application  {
@@ -24,6 +25,10 @@ export function app(): expressWs.Application  {
 
   // -- Middlewares -- //
   server.use(express.json()); // for parsing application/json
+
+  // -- API Endpoints -- //
+  server.use(ApiSlpService.getInstance().Router);
+
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
