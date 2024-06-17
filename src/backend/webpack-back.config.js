@@ -8,6 +8,7 @@ module.exports = {
     externalsPresets: {
       node: true,
     },
+    ws: "ws",
     // ADD HERE YOUR CUSTOM EXTERNAL LIBS
     // lib: 'lib',
   },

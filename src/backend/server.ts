@@ -3,13 +3,14 @@ import 'zone.js/node';
 import { APP_BASE_HREF } from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
+import * as expressWs from 'express-ws';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { AppServerModule } from './main.server';
 
 // The Express app is exported so that it can be used by serverless Functions.
-export function app(): express.Express {
-  const server = express();
+export function app(): expressWs.Application  {
+  const server = expressWs(express()).app;
   const distFolder = join(process.cwd(), 'dist/angular-ssr-starter/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
@@ -20,6 +21,9 @@ export function app(): express.Express {
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
+
+  // -- Middlewares -- //
+  server.use(express.json()); // for parsing application/json
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
