@@ -1,7 +1,6 @@
 // - Server imports
 import { Request, Response } from 'express';
 import StatusCode from 'status-code-enum';
-import * as ws from 'ws';
 
 // - API service abstract class
 import { AbstractApiSingleton } from './abstract-api-singleton.service';
@@ -16,14 +15,28 @@ export class ApiSlpService extends AbstractApiSingleton<ApiSlpService>() {
 
     ApiSlpService._slpManager = SlpManagerService.getInstance();
 
-    // Trim route
-    this.Router.route('/slp/discovery').get(ApiSlpService._getDA);
+    // Servers types route
+    this.Router.route('/api/slp/servers/').get(ApiSlpService._getServersTypes);
+
+    // Servers route
+    this.Router.route('/api/slp/servers/:type').get(ApiSlpService._getServers);
   }
 
   @ApiSlpService.checkInstantiated
-  private static async _getDA(_req: Request, res: Response): Promise<Response> {
-    const result = await ApiSlpService._slpManager.getDA();
+  private static async _getServersTypes(_req: Request, res: Response): Promise<Response> {
+    const result = await ApiSlpService._slpManager.getServersTypes();
 
     return res.status(StatusCode.SuccessOK).send(JSON.stringify(result));
+  }
+
+  private static async _getServers(req: Request, res: Response): Promise<Response> {
+    const type = req.params['type'];
+    try {
+      const result = await ApiSlpService._slpManager.getServers(type);
+      return res.status(StatusCode.SuccessOK).send(JSON.stringify(result));
+    } catch (error: any) {
+      return res.status(StatusCode.ClientErrorNotFound).send({msg: error});
+    }
+
   }
 }

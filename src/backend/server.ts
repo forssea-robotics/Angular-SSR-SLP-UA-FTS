@@ -10,6 +10,7 @@ import { AppServerModule } from './main.server';
 
 // - API services
 import { ApiSlpService } from './api/api-slp.service';
+import { ApiCamera } from './api/api-camera.service';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): expressWs.Application  {
@@ -30,6 +31,7 @@ export function app(): expressWs.Application  {
 
   // -- API Endpoints -- //
   server.use(ApiSlpService.getInstance().Router);
+  server.use(ApiCamera.getInstance().Router);
 
 
   // Example Express Rest API endpoints
