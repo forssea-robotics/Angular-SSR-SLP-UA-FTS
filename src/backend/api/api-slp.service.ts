@@ -22,7 +22,7 @@ export class ApiSlpService extends AbstractApiSingleton<ApiSlpService>() {
     this.Router.route('/api/slp/servers/:type').get(ApiSlpService._getServers);
 
     // attributes route
-    this.Router.route('/api/slp/attributes/:serverName').get(ApiSlpService._getAttributes);
+    this.Router.route('/api/slp/servers/:url/attributes').get(ApiSlpService._getAttributes);
   }
 
   @ApiSlpService.checkInstantiated
@@ -44,9 +44,9 @@ export class ApiSlpService extends AbstractApiSingleton<ApiSlpService>() {
   }
 
   private static async _getAttributes(req: Request, res: Response): Promise<Response> {
-    const serverName = req.params['serverName'];
+    const url = req.params['url'];
     try {
-      const result = await ApiSlpService._slpManager.getAttributes(serverName);
+      const result = await ApiSlpService._slpManager.getAttributes(url);
       return res.status(StatusCode.SuccessOK).send(JSON.stringify(result));
     } catch (error: any) {
       return res.status(StatusCode.ClientErrorNotFound).send({msg: error});

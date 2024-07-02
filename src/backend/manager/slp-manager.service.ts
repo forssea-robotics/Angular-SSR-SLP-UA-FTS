@@ -15,7 +15,7 @@ export class SlpManagerService extends Singleton<SlpManagerService>() {
 
   public getServersTypes(): Promise<string[]>{
     return new Promise((resolve, reject) => {
-      SlpNodejs.findSrvTypes("NETWORK,LOCAL", false).then((result: string[]) => {
+      SlpNodejs.findSrvTypes("LOCAL", true).then((result: string[]) => {
         return resolve(result);
       }).catch((error: any) => {
         console.error(error);
@@ -26,7 +26,7 @@ export class SlpManagerService extends Singleton<SlpManagerService>() {
 
   public getServers(type: string): Promise<Object[]>{
     return new Promise((resolve, reject) => {
-      SlpNodejs.findSrvs(type, "NETWORK", false).then((result: string[]) => {
+      SlpNodejs.findSrvs(type, "LOCAL", true).then((result: string[]) => {
         return resolve(result);
       }).catch((error: any) => {
         console.error(error);
@@ -35,9 +35,9 @@ export class SlpManagerService extends Singleton<SlpManagerService>() {
     });
   }
 
-  public getAttributes(serverName: string): Promise<Object>{
+  public getAttributes(url: string): Promise<Object>{
     return new Promise((resolve, reject) => {
-      SlpNodejs.findAllAttrs(TODO)
+      SlpNodejs.findAllAttrs(url, "LOCAL", true)
         .then((result: Object) => {
           return resolve(result);
         }).catch((error: any) => {
