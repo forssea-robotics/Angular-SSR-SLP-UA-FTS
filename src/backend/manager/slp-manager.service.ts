@@ -36,6 +36,16 @@ export class SlpManagerService extends Singleton<SlpManagerService>() {
       });
     });
   }
+
+  public getAttributes(serverName: string): Promise<Object>{
+    return new Promise((resolve, reject) => {
+      SlpNodejs.findAllAttrs(TODO)
+        .then((result: Object) => {
+          return resolve(result);
+        }).catch((error: any) => {
+          console.error(error);
+          return reject(error);
+        });
     });
   }
 
