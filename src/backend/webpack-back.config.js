@@ -9,7 +9,7 @@ module.exports = {
       node: true,
     },
     ws: "ws",
-    "@forssea_robotics/slp-nodejs": "@forssea_robotics/slp-nodejs",
+    "@forssea_robotics/slp-api-nodejs": "@forssea_robotics/slp-api-nodejs",
     // ADD HERE YOUR CUSTOM EXTERNAL LIBS
     // lib: 'lib',
   },
