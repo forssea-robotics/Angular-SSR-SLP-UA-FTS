@@ -4,6 +4,7 @@
 import { SlpNodejs } from '@forssea_robotics/slp-api-nodejs';
 
 // - Models
+import { SLPServer, SLPAttribute } from '@forssea_robotics/slp-api-nodejs';
 import { Singleton } from 'src/shared/models/abstract-singleton';
 
 
@@ -15,7 +16,7 @@ export class SlpManagerService extends Singleton<SlpManagerService>() {
 
   public getServersTypes(): Promise<string[]>{
     return new Promise((resolve, reject) => {
-      SlpNodejs.findSrvTypes("LOCAL", true).then((result: string[]) => {
+      SlpNodejs.findSrvTypes("DEFAULT", false).then((result: string[]) => {
         return resolve(result);
       }).catch((error: any) => {
         console.error(error);
@@ -24,9 +25,9 @@ export class SlpManagerService extends Singleton<SlpManagerService>() {
     });
   }
 
-  public getServers(type: string): Promise<Object[]>{
+  public getServers(type: string): Promise<SLPServer[]>{
     return new Promise((resolve, reject) => {
-      SlpNodejs.findSrvs(type, "LOCAL", true).then((result: string[]) => {
+      SlpNodejs.findSrvs(type, "DEFAULT", false).then((result: SLPServer[]) => {
         return resolve(result);
       }).catch((error: any) => {
         console.error(error);
@@ -35,10 +36,10 @@ export class SlpManagerService extends Singleton<SlpManagerService>() {
     });
   }
 
-  public getAttributes(url: string): Promise<Object>{
+  public getAttributes(url: string): Promise<SLPAttribute[]>{
     return new Promise((resolve, reject) => {
-      SlpNodejs.findAllAttrs(url, "LOCAL", true)
-        .then((result: Object) => {
+      SlpNodejs.findAllAttrs(url, "DEFAULT", false)
+        .then((result: SLPAttribute[]) => {
           return resolve(result);
         }).catch((error: any) => {
           console.error(error);

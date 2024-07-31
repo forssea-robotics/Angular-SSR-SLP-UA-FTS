@@ -24,7 +24,7 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/platform-server": "^16.1.0",
     "@angular/router": "^16.1.0",
-    "@forssea_robotics/slp-api-nodejs": "^1.0.0",
+    "@forssea_robotics/slp-api-nodejs": "^1.1.0",
     "@nguniversal/express-engine": "^16.2.0",
     "axios": "^1.7.2",
     "express": "^4.15.2",
